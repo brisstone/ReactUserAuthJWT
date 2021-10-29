@@ -3,7 +3,7 @@ import { getUser, removeUserSession } from './Utils/Common';
 
 export default function Student(props) {
 
-    const user = getUser();
+    const email = getUser();
 
      // handle click event of logout button
   const handleLogout = () => {
@@ -14,7 +14,7 @@ export default function Student(props) {
 
     return (
         <div>
-            Welcome Student {user.name}!<br /><br />
+            Welcome Student !<br /><br />
             <input type="button" onClick={handleLogout} value="Logout" />
         </div>
     )

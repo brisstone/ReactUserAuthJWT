@@ -8,14 +8,15 @@ function Login(props) {
   const password = useFormInput('');
   const [error, setError] = useState(null);
 
+  // http://localhost:4000/users/signin
   // handle button click of login form
   const handleLogin = () => {
     setError(null);
     setLoading(true);
-    axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
+    axios.post("/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
-      setUserSession(response.data.token, response.data.user);
-      if(response.data.user.isAdmin === true){
+      setUserSession(response.token, response.email);
+      if(response.adm === true){
           props.history.push('/teacher');
       }else{
         props.history.push('/student');
@@ -24,8 +25,10 @@ function Login(props) {
      
     }).catch(error => {
       setLoading(false);
-      if (error.response.status === 401) setError(error.response.data.message);
-      else setError("Something went wrong. Please try again later.");
+        console.log(error);
+        if (error.status === 401) setError(error.response.data.message);
+        else setError("Something went wrong. Please try again later.");
+      
     });
   }
 

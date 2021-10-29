@@ -9,7 +9,9 @@ export default function Register(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
 
+   
     const redirect = props.location.search
     ? props.location.search.split('=')[1]
     : '/';
@@ -17,19 +19,25 @@ export default function Register(props) {
     const submitHandler = (e) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
-		  alert('Password and confirm password are not match');
+		  setError('Password and confirm password are not match');
 		} else {
                    //   dispatch(register(name, email, password));\
-        axios.post('http://localhost:4000/users/register', { username: name, password: password, email: email }).then(response => {
+        axios.post('/register', { email: email, password: password}).then(response => {
             setLoading(false);
-            setUserSession(response.data.token, response.data.user);
-            if(response.data.user.status === 'success'){
-                props.history.push('/login');
-            }else{
-                response.json.send('Error registering')
-            }
-		
+            setUserSession(response.token, response.email);
+            props.history.push('/login');
+            // if(response.token){
+            //     props.history.push('/login');
+            // }else{
+            //   props.history.push('/login');
+            // }
 
+        }).catch(error => {
+          setLoading(false);
+          console.log(error);
+          if (error.status === 401) setError(error.response.data.message);
+          else setError("Something went wrong. Please try again later.");
+          // error.push(error)
         });
     }  
 };
@@ -39,11 +47,12 @@ export default function Register(props) {
     return (
         <div>
       <form className="form" onSubmit={submitHandler}>
+      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
         <div>
           <h1>Create Account</h1>
         </div>
-        {/* {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>} */}
+         {/* {loading && <LoadingBox></LoadingBox>} */}
+          {error} 
         <div>
           <label htmlFor="name">Name</label>
           <input
