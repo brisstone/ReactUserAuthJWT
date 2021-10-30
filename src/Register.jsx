@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import index from './index.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { setUserSession } from './Utils/Common';
@@ -55,45 +56,57 @@ export default function Register(props) {
           {error} 
         <div>
           <label htmlFor="name">Name</label>
-          <input
+          <div>
+             <input
             type="text"
             id="name"
             placeholder="Enter name"
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
+          </div>
+         
         </div>
         <div>
           <label htmlFor="email">Email address</label>
-          <input
+          <div>
+             <input
             type="email"
             id="email"
             placeholder="Enter email"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
+          </div>
+         
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input
+          <div>
+              <input
             type="password"
             id="password"
             placeholder="Enter password"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
+          </div>
+        
         </div>
         <div>
           <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+          <div>
+             <input
             type="password"
             id="confirmPassword"
             placeholder="Enter confirm password"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
+          </div>
+         
         </div>
-        <div>
+        <div className="submitBtn">
           <label />
           <button className="primary" type="submit">
             Register
