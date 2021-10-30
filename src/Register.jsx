@@ -23,7 +23,7 @@ export default function Register(props) {
 		  setError('Password and confirm password are not match');
 		} else {
                    //   dispatch(register(name, email, password));\
-        axios.post('/register', { email: email, password: password}).then(response => {
+        axios.post('https://cmspython.herokuapp.com/register', { email: email, password: password}).then(response => {
             setLoading(false);
             setUserSession(response.token, response.email);
             props.history.push('/login');

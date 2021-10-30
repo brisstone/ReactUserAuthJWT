@@ -13,7 +13,7 @@ function Login(props) {
   const handleLogin = () => {
     setError(null);
     setLoading(true);
-    axios.post("/login", { email: username.value, password: password.value }).then(response => {
+    axios.post("https://cmspython.herokuapp.com/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
       setUserSession(response.token, response.email);
       if(response.adm === true){
