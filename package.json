@@ -1,7 +1,6 @@
 {
   "name": "login-app-reactjs",
   "version": "0.1.0",
-  "proxy": "https://cmspython.herokuapp.com",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,6 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://cmspython.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
