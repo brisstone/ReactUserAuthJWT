@@ -12,7 +12,9 @@ function Teacher(props) {
 
   return (
     <div>
-      Welcome Teacher: {user.name}!<br /><br />
+      {/* {user.name}! */}
+      Welcome Teacher: {user} <br /><br />
+      {console.log(user)}
       <input type="button" onClick={handleLogout} value="Logout" />
     </div>
   );

@@ -1,6 +1,6 @@
 // return the user data from the session storage
 export const getUser = () => {
-  const userStr = sessionStorage.getItem('response.email');
+  const userStr = sessionStorage.getItem(`response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1')'`);
   if (userStr) return JSON.parse(userStr);
   else return null;
 }

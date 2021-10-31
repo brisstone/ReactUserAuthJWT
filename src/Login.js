@@ -15,8 +15,11 @@ function Login(props) {
     setLoading(true);
     axios.post("/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
-      setUserSession(response.token, response.email);
-      if(response.adm === true){
+      setUserSession(response.token, response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
+      console.log(response.data[2].Info)
+      console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
+      // console.log(response.data[2].Info[1])
+      if(response.data[0].Adm == 1){
           props.history.push('/teacher');
       }else{
         props.history.push('/student');
@@ -34,7 +37,7 @@ function Login(props) {
 
   return (
     <div>
-      Login<br /><br />
+      Login Here<br /><br />
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
