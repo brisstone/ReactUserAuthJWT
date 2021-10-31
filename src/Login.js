@@ -15,11 +15,22 @@ function Login(props) {
     setLoading(true);
     axios.post("/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
-      setUserSession(response.token, response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
-      console.log(response.data[2].Info)
-      console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
+      // setUserSession(response.token, response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
+      // console.log(response.data[2].Info)
+      // console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
+      // // console.log(response.data[2].Info[1])
+      // if(response.data[0].Adm == 1){
+      //     props.history.push('/teacher');
+      // }else{
+      //   props.history.push('/student');
+      //    console.log(" student");
+      // }
+
+      setUserSession(response.data.token, response.data.adm);
+      console.log(response.data)
+      // console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
       // console.log(response.data[2].Info[1])
-      if(response.data[0].Adm == 1){
+      if(response.data.adm === true){
           props.history.push('/teacher');
       }else{
         props.history.push('/student');
