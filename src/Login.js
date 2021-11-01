@@ -10,12 +10,19 @@ function Login(props) {
 
   // http://localhost:4000/users/signin
   // handle button click of login form
+  var config = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    responseType: 'json'
+  }
   const handleLogin = async () => {
     setError(null);
     setLoading(true);
     await axios.post("/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
-      setUserSession(response.token, response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
+      console.log(response.data)
+      setUserSession(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
       console.log(response.data[2].Info)
       console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
       // console.log(response.data[2].Info[1])
@@ -48,7 +55,7 @@ function Login(props) {
 
   return (
     <div>
-      login here<br /><br />
+      LOGIN<br /><br />
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
