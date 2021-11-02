@@ -19,7 +19,8 @@ function Login(props) {
   const handleLogin = async () => {
     setError(null);
     setLoading(true);
-    await axios.post("/login", { email: username.value, password: password.value }).then(response => {
+      // "proxy": "https://pythocmsapi.herokuapp.com/",
+    await axios.post("https://pythocmsapi.herokuapp.com/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
       console.log(response.data)
       setUserSession(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
@@ -55,7 +56,7 @@ function Login(props) {
 
   return (
     <div>
-      LOGIN<br /><br />
+      LOGIN he<br /><br />
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
