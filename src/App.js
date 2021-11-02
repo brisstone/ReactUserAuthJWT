@@ -40,13 +40,13 @@ function App() {
         <div>
           <div className="header">
             <NavLink exact activeClassName="active" to="/">Home</NavLink>
-            <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
+            {/* <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
             <NavLink activeClassName="active" to="/teacher">Teacher Dashboard</NavLink><small>(Access with token only)</small>
-            <NavLink activeClassName="active" to="/register">Register</NavLink><small>(Access without token)</small>
+            <NavLink activeClassName="active" to="/register">Register</NavLink><small>(Access without token)</small> */}
           </div>
           <div className="content">
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={Login} />
               <PublicRoute path="/login" component={Login} />
               <Route path="/student" component={Student} />
               <PublicRoute path="/register" component={register} />
