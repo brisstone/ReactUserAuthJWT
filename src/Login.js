@@ -21,7 +21,7 @@ function Login(props) {
     setLoading(true);
       // "proxy": "https://pythocmsapi.herokuapp.com/",
 
-    await axios.post("/login", { email: username.value, password: password.value }).then(response => {
+    await axios.post("https://pythocmsapi.herokuapp.com/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
       console.log(response.data[0].IncorrectPassword)
       if(response.data[0].NoUserFound == "Email Does not exist"){
