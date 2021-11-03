@@ -20,19 +20,30 @@ function Login(props) {
     setError(null);
     setLoading(true);
       // "proxy": "https://pythocmsapi.herokuapp.com/",
-    await axios.post("https://pythocmsapi.herokuapp.com/login", { email: username.value, password: password.value }).then(response => {
+
+    await axios.post("/login", { email: username.value, password: password.value }).then(response => {
       setLoading(false);
-      console.log(response.data)
-      setUserSession(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
-      console.log(response.data[2].Info)
-      console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
-      // console.log(response.data[2].Info[1])
-      if(response.data[0].Adm == 1){
-          props.history.push('/teacher');
-      }else{
-        props.history.push('/student');
-         console.log(" student");
+      console.log(response.data[0].IncorrectPassword)
+      if(response.data[0].NoUserFound == "Email Does not exist"){
+        setError('Email does not exist')
       }
+      else if(response.data[0].IncorrectPassword == "Incorrect Password"){
+        setError('Incorrect Password')
+      }else{
+          setUserSession(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'));
+        console.log(response.data[2].Info)
+        console.log(response.data[2].Info.split(", ")[1].replace(/^'(.*)'$/, '$1'))
+        // console.log(response.data[2].Info[1])
+        if(response.data[0].Adm == 1){
+            props.history.push('/teacher');
+        }else{
+          props.history.push('/student');
+          console.log(" student");
+      }
+
+      }
+      
+      
 
       // setUserSession(response.data.token, response.data.adm);
       // console.log(response.data)
